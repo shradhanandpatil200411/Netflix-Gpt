@@ -28,33 +28,36 @@ const SignPage = () => {
         <h1 className="my-2 font-bold w-full text-2xl">
           {signIn ? "Sign In" : "Sign Up"}
         </h1>
-        {!signIn && (
+        <form onSubmit={(e) => e.preventDefault()}>
+          {!signIn && (
+            <input
+              ref={name}
+              className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
+              type="text"
+              placeholder="Name"
+            />
+          )}
           <input
-            ref={name}
+            ref={email}
+            type="email"
+            placeholder="Email or Phone number"
             className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
-            type="text"
-            placeholder="Name"
           />
-        )}
-        <input
-          ref={email}
-          type="email"
-          placeholder="Email or Phone number"
-          className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
-        />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
-        />
-        <p className="text-red-600 font-bold">{errorMessage}</p>
-        <button
-          className="w-full px-4 py-3 my-2 bg-red-700 rounded-lg font-bold"
-          onClick={handelOnClick}
-        >
-          {signIn ? "Sign In" : "Sign Up"}
-        </button>
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
+          />
+          <p className="text-red-600 font-bold">{errorMessage}</p>
+          <button
+            className="w-full px-4 py-3 my-2 bg-red-700 rounded-lg font-bold"
+            onClick={handelOnClick}
+          >
+            {signIn ? "Sign In" : "Sign Up"}
+          </button>
+        </form>
+
         <p>
           {signIn ? "New to Netflix?" : "Already Signed?"}
           <span
