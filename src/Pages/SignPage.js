@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import netflixBg from "../Img/netflixBg.jpg";
+import { checkValidation } from "../utils/validation";
 
 const SignPage = () => {
   const [signIn, setSignIn] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef(null);
+
+  const handelOnClick = () => {
+    const message = checkValidation(
+      email.current.value,
+      password.current.value
+    );
+    setErrorMessage(message);
+  };
   const toggleSignIn = () => {
     setSignIn(!signIn);
   };
@@ -17,22 +30,29 @@ const SignPage = () => {
         </h1>
         {!signIn && (
           <input
+            ref={name}
             className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
             type="text"
             placeholder="Name"
           />
         )}
         <input
+          ref={email}
           type="email"
           placeholder="Email or Phone number"
           className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
         />
         <input
+          ref={password}
           type="password"
           placeholder="Password"
           className="px-4 py-2 my-2 bg-[#14100f] border w-full rounded-lg"
         />
-        <button className="w-full px-4 py-3 my-2 bg-red-700 rounded-lg font-bold">
+        <p className="text-red-600 font-bold">{errorMessage}</p>
+        <button
+          className="w-full px-4 py-3 my-2 bg-red-700 rounded-lg font-bold"
+          onClick={handelOnClick}
+        >
           {signIn ? "Sign In" : "Sign Up"}
         </button>
         <p>
