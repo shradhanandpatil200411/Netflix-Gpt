@@ -1,7 +1,11 @@
+import Navbar from "./components/Navbar";
+import SignPage from "./Pages/SignPage";
+
 function App() {
   return (
     <div>
-      <h1>vicky</h1>
+      <Navbar />
+      <SignPage />
     </div>
   );
 }
